@@ -1,8 +1,9 @@
-#' Function for exploring Bayesian inference for the sample mean for continuous data.
+#' Function for exploring Bayesian inference for the sample mean for Normal data.
 #'
 #' This function plots the prior, likelihood, and posterior distribution of the sample mean. It reports the MAP (maximum a posteriori) and EAP (expected a posteriori) estimates of the mean as well as the 95\% credible interval around the MAP.
 #' 
 #' @param data A vector of data
+#' @param pop.sd The population sd of the data
 #' @param prior.type The type of distribution for the prior. Can be "uniform" or "normal"
 #' @param prior.parameters A vector of length two providing the parameter values for the prior. When prior.type="normal", the values are the mean and sd. When prior.type="uniform", the values are the min and the max.
 #' @param min The minimum possible value of mu to consider.
@@ -20,8 +21,8 @@
 #' @examples
 #' set.seed(1)
 #' data <- rnorm(n=10, mean=1, sd=1)
-#' plotBayes(data, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
-#' plotBayes(data, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
+#' plotBayes(data, pop.sd=1, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
+#' plotBayes(data, pop.sd=1, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
 
 plotBayes <- function(data, pop.sd, prior.type="normal", prior.parameters, min, max, points=1000) {
   

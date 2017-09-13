@@ -2,13 +2,15 @@
 % Please edit documentation in R/plotBayes_function.R
 \name{plotBayes}
 \alias{plotBayes}
-\title{Function for exploring Bayesian inference for the sample mean for continuous data.}
+\title{Function for exploring Bayesian inference for the sample mean for Normal data.}
 \usage{
-plotBayes(data, prior.type = "normal", prior.parameters, min, max,
+plotBayes(data, pop.sd, prior.type = "normal", prior.parameters, min, max,
   points = 1000)
 }
 \arguments{
 \item{data}{A vector of data}
+
+\item{pop.sd}{The population sd of the data}
 
 \item{prior.type}{The type of distribution for the prior. Can be "uniform" or "normal"}
 
@@ -36,6 +38,6 @@ This function plots the prior, likelihood, and posterior distribution of the sam
 \examples{
 set.seed(1)
 data <- rnorm(n=10, mean=1, sd=1)
-plotBayes(data, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
-plotBayes(data, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
+plotBayes(data, pop.sd=1, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
+plotBayes(data, pop.sd=1, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
 }
