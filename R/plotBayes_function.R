@@ -88,8 +88,8 @@ plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, poi
     data.mean=mean(data),
     map=mus[which(normalized.posterior == max(normalized.posterior))],
     eap=sum((normalized.posterior/sum(normalized.posterior)*mus)),
-    cred.95.LL= mus[which(abs(cumsum(normalized.posterior*width)-.05) == 
-                            min(abs(cumsum(normalized.posterior*width)-.05)))],
-    cred.95.UL= mus[which(abs(cumsum(normalized.posterior*width)-.95) == 
-                            min(abs(cumsum(normalized.posterior*width)-.95)))]))
+    cred.95.LL= mus[which(abs(cumsum(normalized.posterior*width)-.025) == 
+                            min(abs(cumsum(normalized.posterior*width)-.025)))],
+    cred.95.UL= mus[which(abs(cumsum(normalized.posterior*width)-.975) == 
+                            min(abs(cumsum(normalized.posterior*width)-.975)))]))
 }
