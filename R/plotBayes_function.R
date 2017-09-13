@@ -23,7 +23,7 @@
 #' plotBayes(data, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
 #' plotBayes(data, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
 
-plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, points=1000) {
+plotBayes <- function(data, pop.sd, prior.type="normal", prior.parameters, min, max, points=1000) {
   
   # do some checks
   if (!(prior.type %in% c("normal", "uniform"))) {stop("prior.type must be one of \"normal\" or \"uniform\"")}
@@ -31,17 +31,17 @@ plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, poi
   if (length(prior.parameters) != 2) {stop("prior.parameters must be a vector of length two.")}
 
   
-  if (prior.type=="uniform" & (min>prior.parameters[1])) {stop("min must be less than the minimum of the uniform prior, prior.parameters[1]")}
-  if (prior.type=="uniform" & (max<prior.parameters[2])) {stop("max must be greater than the maximim of the uniform prior, prior.parameters[2]")}
+  if (prior.type=="uniform" & (min>prior.parameters[1])) {warning("min is greater than the minimum of the uniform prior")}
+  if (prior.type=="uniform" & (max<prior.parameters[2])) {warning("max is less than the maximum of the uniform prior")}
   
   if (prior.type=="normal" & (min>prior.parameters[1])) {stop("min must be substantially less than the mean parameter of the prior (prior.parameters[1])")}
   if (prior.type=="normal" & (max<prior.parameters[1])) {stop("max must be substantially greater than the mean parameter of the prior (prior.parameters[1])")}
   if (prior.type=="normal" & (prior.parameters[2]<= 0)) {stop("The standard deviation parameter of the prior (prior.parameters[2]) must be greater than zero.")}
   
   
-  # declare function for calculating the likelihood of the data given mu
-  calc.L <- function(data, mu, sd) {
-    LL <- sum(log(dnorm(data, mu, sd)))
+  # declare function for calculating the loglikelihood of the data given mu
+  calc.LL <- function(data, mu, sd) {
+    LL <- sum(log(dnorm(data, mu, sd))+1)
     return(LL)
   }
   
@@ -52,9 +52,10 @@ plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, poi
   width <- (max - min)/ points
   
   # calculate the log likelihood of the data given each value of mu
-  LL <- sapply(mus, calc.L, data=data, sd=sd(data))
-  L <- exp(LL - mean(LL))
-  
+  LL <- sapply(mus, calc.LL, data=data, sd=pop.sd)
+  # convert LL to L
+  L <- exp(LL)
+           
   # prior distribution
   if (prior.type=="normal") {
     prior <- dnorm(mus, prior.parameters[1], prior.parameters[2])
@@ -74,6 +75,7 @@ plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, poi
   
   # find global max to scale yaxis
   ymax <- max(c(prior, normalized.posterior, normalized.L))
+
   plot(mus, prior, type = "l", 
        xlim = c(min-((max-min)/10), max+((max-min)/10)), ylim = c(0, ymax), lty = "dotted", 
        col = "gray48", xlab = bquote(mu), ylab = "Density", las = 1)
@@ -93,3 +95,4 @@ plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, poi
     cred.95.UL= mus[which(abs(cumsum(normalized.posterior*width)-.975) == 
                             min(abs(cumsum(normalized.posterior*width)-.975)))]))
 }
+
