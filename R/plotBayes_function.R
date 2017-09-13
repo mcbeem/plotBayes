@@ -27,7 +27,7 @@ plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, poi
   if (prior.type=="uniform" & (max<prior.parameters[2])) {stop("max must be greater than the maximim of the uniform prior, prior.parameters[2]")}
   
   if (prior.type=="normal" & (min>prior.parameters[1])) {stop("min must be substantially less than the mean parameter of the prior (prior.parameters[1])")}
-  if (prior.type=="normal" & (min>prior.parameters[1])) {stop("max must be substantially greater than the mean parameter of the prior (prior.parameters[1])")}
+  if (prior.type=="normal" & (max<prior.parameters[1])) {stop("max must be substantially greater than the mean parameter of the prior (prior.parameters[1])")}
   if (prior.type=="normal" & (prior.parameters[2]<= 0)) {stop("The standard deviation parameter of the prior (prior.parameters[2]) must be greater than zero.")}
   
   
