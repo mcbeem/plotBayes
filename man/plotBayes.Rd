@@ -20,8 +20,18 @@ plotBayes(data, prior.type = "normal", prior.parameters, min, max,
 
 \item{points}{The number of values of mu to be calculated, higher means more precision. Defaults to 1000.}
 }
+\value{
+Returns a list with the following components:  
+\itemize{
+  \item \code{mean}    The sample mean of the data.  \cr 
+  \item \code{map}    The maximum a posteriori estimate of the mean.  \cr 
+  \item \code{eap}    The expected a posteriori estimate of the mean.  \cr
+  \item \code{cred.95.LL}    The lower limit of the 95\% credible interval of the MAP estimate of the mean.  \cr 
+  \item \code{cred.95.UL}    The upper limit of the 95\% credible interval of the MAP estimate of the mean.  \cr 
+ }
+}
 \description{
-This function plots the prior, likelihood, and posterior distribution of the sample mean. It reports the MAP (maximum a posteriori) estimate of the mean as well as the 95\% credible interval.
+This function plots the prior, likelihood, and posterior distribution of the sample mean. It reports the MAP (maximum a posteriori) and EAP (expected a posteriori) estimates of the mean as well as the 95\% credible interval around the MAP.
 }
 \examples{
 set.seed(1)

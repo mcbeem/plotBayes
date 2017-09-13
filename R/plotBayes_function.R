@@ -1,6 +1,6 @@
 #' Function for exploring Bayesian inference for the sample mean for continuous data.
 #'
-#' This function plots the prior, likelihood, and posterior distribution of the sample mean. It reports the MAP (maximum a posteriori) estimate of the mean as well as the 95\% credible interval.
+#' This function plots the prior, likelihood, and posterior distribution of the sample mean. It reports the MAP (maximum a posteriori) and EAP (expected a posteriori) estimates of the mean as well as the 95\% credible interval around the MAP.
 #' 
 #' @param data A vector of data
 #' @param prior.type The type of distribution for the prior. Can be "uniform" or "normal"
@@ -9,6 +9,14 @@
 #' @param max The maximum possible value of mu to consider.
 #' @param points The number of values of mu to be calculated, higher means more precision. Defaults to 1000.
 #' @export
+#' @return Returns a list with the following components:  
+#' \itemize{
+#'   \item \code{mean}    The sample mean of the data.  \cr 
+#'   \item \code{map}    The maximum a posteriori estimate of the mean.  \cr 
+#'   \item \code{eap}    The expected a posteriori estimate of the mean.  \cr
+#'   \item \code{cred.95.LL}    The lower limit of the 95\% credible interval of the MAP estimate of the mean.  \cr 
+#'   \item \code{cred.95.UL}    The upper limit of the 95\% credible interval of the MAP estimate of the mean.  \cr 
+#'  }
 #' @examples
 #' set.seed(1)
 #' data <- rnorm(n=10, mean=1, sd=1)
