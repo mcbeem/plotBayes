@@ -1,4 +1,4 @@
-#' Function for exploring Bayesian inference for the sample mean for normal data.
+#' Function for exploring Bayesian inference for the sample mean for continuous data.
 #'
 #' This function plots the prior, likelihood, and posterior distribution of the sample mean. It reports the MAP (maximum a posteriori) estimate of the mean as well as the 95\% credible interval.
 #' 

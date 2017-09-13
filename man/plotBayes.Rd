@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotBayes_function.R
 \name{plotBayes}
 \alias{plotBayes}
-\title{Function for exploring Bayesian inference for the sample mean for normal data.}
+\title{Function for exploring Bayesian inference for the sample mean for continuous data.}
 \usage{
 plotBayes(data, prior.type = "normal", prior.parameters, min, max,
   points = 1000)
