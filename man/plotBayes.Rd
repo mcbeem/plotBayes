@@ -4,14 +4,15 @@
 \alias{plotBayes}
 \title{Function for exploring Bayesian inference for the sample mean for normal data.}
 \usage{
-plotBayes(data, prior.mean, prior.sd, min, max, points = 1000)
+plotBayes(data, prior.type = "normal", prior.parameters, min, max,
+  points = 1000)
 }
 \arguments{
-\item{data}{A vector of data.}
+\item{data}{A vector of data}
 
-\item{prior.mean}{The mean of the prior distribution for the mean parameter mu.}
+\item{prior.type}{The type of distribution for the prior. Can be "uniform" or "normal"}
 
-\item{prior.sd}{The SD of the prior distribution for the mean. Smaller means more certainty.}
+\item{prior.parameters}{A vector of length two providing the parameter values for the prior. When prior.type="normal", the values are the mean and sd. When prior.type="uniform", the values are the min and the max.}
 
 \item{min}{The minimum possible value of mu to consider.}
 
@@ -25,5 +26,6 @@ This function plots the prior, likelihood, and posterior distribution of the sam
 \examples{
 set.seed(1)
 data <- rnorm(n=10, mean=1, sd=1)
-plotBayes(data, prior.mean=0, prior.sd=.2, min=-2, max=2)
+plotBayes(data, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
+plotBayes(data, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
 }
