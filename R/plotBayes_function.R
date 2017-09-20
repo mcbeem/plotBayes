@@ -90,10 +90,7 @@ plotBayes <- function(data, pop.sd, prior.type="normal", prior.parameters, min, 
   return(list(
     data.mean=mean(data),
     map=mus[which(normalized.posterior == max(normalized.posterior))],
-    eap=sum((normalized.posterior/sum(normalized.posterior)*mus)),
-    cred.95.LL= mus[which(abs(cumsum(normalized.posterior*width)-.025) == 
-                            min(abs(cumsum(normalized.posterior*width)-.025)))],
-    cred.95.UL= mus[which(abs(cumsum(normalized.posterior*width)-.975) == 
-                            min(abs(cumsum(normalized.posterior*width)-.975)))]))
+    eap=sum((normalized.posterior/sum(normalized.posterior)*mus))
+  ))
 }
 

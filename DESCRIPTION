@@ -1,8 +1,8 @@
 Package: plotBayes
 Title: Function for Exploring Bayesian Inference for the Sample Mean for Continuous Data
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: person("Matthew", "McBee", email = "mmcbee@gmail.com", role = c("aut", "cre"))
-Description: This function plots the prior, likelihood, and posterior distribution of the sample mean. It reports the MAP (maximum a posteriori) estimate of the mean as well as the 95% credible interval.
+Description: This function plots the prior, likelihood, and posterior distribution of the sample mean. It reports the MAP (maximum a posteriori, also called the posterior mode) and EAP (expected a posteriori) estimates of the mean.
 Depends: R (>= 3.3.0)
 License: GPL-3
 Encoding: UTF-8
