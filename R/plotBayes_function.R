@@ -3,7 +3,6 @@
 #' This function plots the prior, likelihood, and posterior distribution of the sample mean. It reports the MAP (maximum a posteriori) and EAP (expected a posteriori) estimates of the mean as well as the 95\% credible interval around the MAP.
 #' 
 #' @param data A vector of data
-#' @param pop.sd The population sd of the data
 #' @param prior.type The type of distribution for the prior. Can be "uniform" or "normal"
 #' @param prior.parameters A vector of length two providing the parameter values for the prior. When prior.type="normal", the values are the mean and sd. When prior.type="uniform", the values are the min and the max.
 #' @param min The minimum possible value of mu to consider.
@@ -15,16 +14,14 @@
 #'   \item \code{mean}    The sample mean of the data.  \cr 
 #'   \item \code{map}    The maximum a posteriori estimate of the mean.  \cr 
 #'   \item \code{eap}    The expected a posteriori estimate of the mean.  \cr
-#'   \item \code{cred.95.LL}    The lower limit of the 95\% credible interval of the MAP estimate of the mean.  \cr 
-#'   \item \code{cred.95.UL}    The upper limit of the 95\% credible interval of the MAP estimate of the mean.  \cr 
 #'  }
 #' @examples
 #' set.seed(1)
 #' data <- rnorm(n=10, mean=1, sd=1)
-#' plotBayes(data, pop.sd=1, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
-#' plotBayes(data, pop.sd=1, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
+#' plotBayes(data, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
+#' plotBayes(data, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
 
-plotBayes <- function(data, pop.sd, prior.type="normal", prior.parameters, min, max, points=1000) {
+plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, points=1000) {
   
   # do some checks
   if (!(prior.type %in% c("normal", "uniform"))) {stop("prior.type must be one of \"normal\" or \"uniform\"")}
@@ -39,7 +36,6 @@ plotBayes <- function(data, pop.sd, prior.type="normal", prior.parameters, min, 
   if (prior.type=="normal" & (max<prior.parameters[1])) {stop("max must be substantially greater than the mean parameter of the prior (prior.parameters[1])")}
   if (prior.type=="normal" & (prior.parameters[2]<= 0)) {stop("The standard deviation parameter of the prior (prior.parameters[2]) must be greater than zero.")}
   
-  
   # declare function for calculating the loglikelihood of the data given mu
   calc.LL <- function(data, mu, sd) {
     LL <- sum(log(dnorm(data, mu, sd))+1)
@@ -53,7 +49,7 @@ plotBayes <- function(data, pop.sd, prior.type="normal", prior.parameters, min, 
   width <- (max - min)/ points
   
   # calculate the log likelihood of the data given each value of mu
-  LL <- sapply(mus, calc.LL, data=data, sd=pop.sd)
+  LL <- sapply(mus, calc.LL, data=data, sd=sd(data))
   # convert LL to L
   L <- exp(LL)
            
