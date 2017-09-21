@@ -38,7 +38,7 @@ plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, poi
   
   # declare function for calculating the loglikelihood of the data given mu
   calc.LL <- function(data, mu, sd) {
-    LL <- sum(log(dnorm(data, mu, sd))+1)
+    LL <- sum(log(dnorm(data, mu, sd)))
     return(LL)
   }
   
