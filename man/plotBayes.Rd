@@ -4,13 +4,11 @@
 \alias{plotBayes}
 \title{Function for exploring Bayesian inference for the sample mean for Normal data.}
 \usage{
-plotBayes(data, pop.sd, prior.type = "normal", prior.parameters, min, max,
+plotBayes(data, prior.type = "normal", prior.parameters, min, max,
   points = 1000)
 }
 \arguments{
 \item{data}{A vector of data}
-
-\item{pop.sd}{The population sd of the data}
 
 \item{prior.type}{The type of distribution for the prior. Can be "uniform" or "normal"}
 
@@ -28,8 +26,6 @@ Returns a list with the following components:
   \item \code{mean}    The sample mean of the data.  \cr 
   \item \code{map}    The maximum a posteriori estimate of the mean.  \cr 
   \item \code{eap}    The expected a posteriori estimate of the mean.  \cr
-  \item \code{cred.95.LL}    The lower limit of the 95\% credible interval of the MAP estimate of the mean.  \cr 
-  \item \code{cred.95.UL}    The upper limit of the 95\% credible interval of the MAP estimate of the mean.  \cr 
  }
 }
 \description{
@@ -38,6 +34,6 @@ This function plots the prior, likelihood, and posterior distribution of the sam
 \examples{
 set.seed(1)
 data <- rnorm(n=10, mean=1, sd=1)
-plotBayes(data, pop.sd=1, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
-plotBayes(data, pop.sd=1, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
+plotBayes(data, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
+plotBayes(data, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
 }
