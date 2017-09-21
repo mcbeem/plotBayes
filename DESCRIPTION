@@ -1,12 +1,11 @@
-Package: visualizeBF
-Title: Function for Visualizing the Bayes Factor for the Mean of Continuous Date
-Version: 0.0.1
+Package: plotBayes
+Title: Function for exploring Bayesian inference for the sample mean for Normal data
+Version: 0.0.5
 Authors@R: person("Matthew", "McBee", email = "mmcbee@gmail.com", role = c("aut", "cre"))
-Description: This function calculates BFs and makes plots to show what they mean.
+Description: This function plots the prior, normalized likelihood, and posterior distributions.
 Depends: R (>= 3.3.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
-	dplyr,
 RoxygenNote: 6.0.1
