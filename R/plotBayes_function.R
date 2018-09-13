@@ -114,7 +114,7 @@ plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, poi
     data.mean=mean(data),
     map=mus[which(normalized.posterior == max(normalized.posterior))],
     eap=sum((normalized.posterior/sum(normalized.posterior)*mus)),
-    credible.intercal=c(mus[ll.index], mus[ul.index])
+    credible.interval=c(mus[ll.index], mus[ul.index])
   ))
 }
 
