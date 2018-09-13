@@ -5,7 +5,7 @@
 \title{Function for exploring Bayesian inference for the sample mean for Normal data.}
 \usage{
 plotBayes(data, prior.type = "normal", prior.parameters, min, max,
-  points = 1000)
+  points = 1000, credible = 0.95)
 }
 \arguments{
 \item{data}{A vector of data}
@@ -19,6 +19,8 @@ plotBayes(data, prior.type = "normal", prior.parameters, min, max,
 \item{max}{The maximum possible value of mu to consider.}
 
 \item{points}{The number of values of mu to be calculated, higher means more precision. Defaults to 1000.}
+
+\item{credible}{The width of the credible interval specified as a number between zero and one. Defaults to 0.95 for a 95% credible interval.}
 }
 \value{
 Returns a list with the following components:  
@@ -26,6 +28,7 @@ Returns a list with the following components:
   \item \code{mean}    The sample mean of the data.  \cr 
   \item \code{map}    The maximum a posteriori estimate of the mean.  \cr 
   \item \code{eap}    The expected a posteriori estimate of the mean.  \cr
+  \item \code{credible.interval} The values defining the endpoints of the Bayesian credible interval.
  }
 }
 \description{
@@ -36,4 +39,5 @@ set.seed(1)
 data <- rnorm(n=10, mean=1, sd=1)
 plotBayes(data, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2) 
 plotBayes(data, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
+plotBayes(data, prior.parameters=c(.7, 1.5), min=-2, max=2, credible=.9)
 }
