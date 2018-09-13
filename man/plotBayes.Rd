@@ -20,7 +20,7 @@ plotBayes(data, prior.type = "normal", prior.parameters, min, max,
 
 \item{points}{The number of values of mu to be calculated, higher means more precision. Defaults to 1000.}
 
-\item{credible}{The width of the credible interval specified as a number between zero and one. Defaults to 0.95 for a 95% credible interval.}
+\item{credible}{The width of the credible interval specified as a number between zero and one. Defaults to 0.95 for a 95\% credible interval.}
 }
 \value{
 Returns a list with the following components:  

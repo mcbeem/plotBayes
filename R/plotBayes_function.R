@@ -7,7 +7,7 @@
 #' @param prior.parameters A vector of length two providing the parameter values for the prior. When prior.type="normal", the values are the mean and sd. When prior.type="uniform", the values are the min and the max.
 #' @param min The minimum possible value of mu to consider.
 #' @param max The maximum possible value of mu to consider.
-#' @param credible The width of the credible interval specified as a number between zero and one. Defaults to 0.95 for a 95% credible interval.
+#' @param credible The width of the credible interval specified as a number between zero and one. Defaults to 0.95 for a 95\% credible interval.
 #' @param points The number of values of mu to be calculated, higher means more precision. Defaults to 1000.
 #' @export
 #' @return Returns a list with the following components:  
