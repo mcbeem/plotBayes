@@ -81,12 +81,13 @@ plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, poi
 
   plot(mus, prior, type = "l", 
        xlim = c(min-((max-min)/10), max+((max-min)/10)), ylim = c(0, ymax), lty = "dotted", 
-       col = "gray48", xlab = bquote(mu), ylab = "Density", las = 1)
+       col = "gray48", xlab = bquote(mu), ylab = "Density", las = 1,
+       cex.lab=.8, cex.axis=.8, cex.main=.8, cex.sub=.8)
   lines(mus, normalized.posterior, type = "l", col = "skyblue", lwd = 3)
   lines(mus, normalized.L, type = "l", col = "red", lty = 2)
   lines(rev(mus), rev(prior), type="l", lty="dotted", col="gray48")
   legend("topleft", c("Prior", "Likelihood", "Posterior"), lty = c(2, 2, 1), 
-         col = c("gray48", "red", "skyblue"), lwd = c(1, 1, 4), bty = "n")
+         col = c("gray48", "red", "skyblue"), lwd = c(1, 1, 2), bty = "n", cex=.8)
 
   # find credible interval locations
   
