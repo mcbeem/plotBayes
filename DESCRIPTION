@@ -1,6 +1,6 @@
 Package: plotBayes
 Title: Function for exploring Bayesian inference for the sample mean for Normal data
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: person("Matthew", "McBee", email = "mmcbee@gmail.com", role = c("aut", "cre"))
 Description: This function plots the prior, normalized likelihood, and posterior distributions.
 Depends: R (>= 3.3.0)

@@ -100,7 +100,12 @@ plotBayes <- function(data, prior.type="normal", prior.parameters, min, max, poi
   indexes <- 1:length(normalized.posterior)
   
   # calculate the area below each value
-    cumulative.density <- sapply(indexes, calc.cum.dens)
+  cumulative.density <- sapply(indexes, calc.cum.dens)
+  
+  # remove NA, 0s and 1s
+  cumulative.density <- cumulative.density[!is.na(cumulative.density)]
+  cumulative.density <- cumulative.density[cumulative.density > 0]
+  cumulative.density <- cumulative.density[cumulative.density < 1]
     
   # find the limits
   # percentile bounds given the supplied value of argument 'credible'
