@@ -1,0 +1,61 @@
+---
+title: "Introduction to ```plotBayes```"
+output: 
+  md_document:
+    variant: markdown_github
+---
+
+The ```plotBayes``` package illustrates Bayesian inference, showing how the prior distribution and the likelihood of the data combine to produce a posterior distribution.
+
+This is mostly a toy package useful for teaching.
+
+# Installation
+
+You need the ```devtools``` package to install this from github.
+
+```{r, eval=F}
+install.packages("devtools")
+```
+
+Then install ```plotBayes```.
+
+```{r, eval=F}
+devtools::install_github("mcbeem/plotBayes")
+```
+
+And then load it.
+
+```{r, echo=T, eval=F}
+library(plotBayes)
+```
+
+```{r, include=F}
+library(plotBayes)
+```
+
+
+# Example
+
+Normal prior with $\mu=0$, $\sigma=0.5$:
+
+```{r, fig.width=5, fig.height=5}
+set.seed(1)
+data <- rnorm(n=10, mean=1, sd=1)
+plotBayes(data, prior.type="normal", prior.parameters=c(0, .5), min=-2, max=2)
+```
+
+You can request a different credible interval with with argument ```credible=```.
+
+```{r}
+plotBayes(data, prior.parameters=c(.0, .5), prior.type="normal",
+          min=-2, max=2, credible=.68)
+
+```
+
+Uniform prior with $a=.7$, $b=1.5$:
+
+```{r}
+plotBayes(data, prior.type="uniform", prior.parameters=c(.7, 1.5), min=-2, max=2)
+```
+
+
